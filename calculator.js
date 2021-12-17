@@ -11,14 +11,34 @@ app.get("/", function(req,res){
 
 app.post('/', function (req,res){
     console.log(req.body)
-    let n1 = req.body.num1;
-    let n2 = req.body.num2;
+    let n1 = Number(req.body.num1);
+    let n2 = Number(req.body.num2);
 
     let result = n1 + n2;
 
 
     res.send("The result is: " + result)
 })
+
+//BMI Calculator Routes
+
+app.get("/bmicalculator", function(req,res){
+    res.sendFile( __dirname + '/bmiCalculator.html')
+})
+
+//logic
+
+app.post('/bmicalculator', function (req,res){
+    console.log(req.body)
+    let w = parseFloat(req.body.weight);
+    let h = parseFloat(req.body.height);
+
+    let result = w / (h * h);
+
+
+    res.send("The result is: " + result)
+})
+
 
 
 app.listen(3002, function(){
